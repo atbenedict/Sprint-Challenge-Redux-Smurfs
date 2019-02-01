@@ -14,18 +14,25 @@ class App extends Component {
   state = {
     smurfs: []
   };
+
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
+
   render() {
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <SmurfsForm />
-        <SmurfsList />
+        <SmurfsList smurfs={this.props.smurfs} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ state });
+const mapStateToProps = state => ({
+  smurfs: state.smurfs
+});
 
 export default connect(
   mapStateToProps,
