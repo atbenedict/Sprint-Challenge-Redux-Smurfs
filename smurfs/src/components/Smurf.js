@@ -2,10 +2,11 @@ import React from "react";
 
 export default function Smurf(props) {
   return (
-    <div>
-      <h1>{props.name}</h1>
-      <h1>{props.age}</h1>
-      <h1>{props.height}</h1>
+    <div className="smurfCard">
+      <h2>{`${props.name}`}</h2>
+      <p>{`${props.age} smurf years old`}</p>
+      <p>{`Height: ${props.height}`}</p>
+      {/* <button onClick={props.deleteSmurf(props.id)} /> */}
     </div>
   );
 }

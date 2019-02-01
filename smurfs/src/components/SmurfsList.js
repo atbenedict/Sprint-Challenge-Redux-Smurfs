@@ -11,6 +11,7 @@ export default function SmurfsList(props) {
           name={smurf.name}
           height={smurf.height}
           age={smurf.age}
+          deleteSmurf={props.deleteSmurf}
         />
       ))}
     </div>

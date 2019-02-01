@@ -28,7 +28,13 @@ import {
   FETCH_SMURFS_FAILURE,
   ADD_SMURF_START,
   ADD_SMURF_SUCCESS,
-  ADD_SMURF_FAILURE
+  ADD_SMURF_FAILURE,
+  UPDATE_SMURF_START,
+  UPDATE_SMURF_SUCCESS,
+  UPDATE_SMURF_FAILURE,
+  DELETE_SMURF_START,
+  DELETE_SMURF_SUCCESS,
+  DELETE_SMURF_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -42,27 +48,21 @@ const initialState = {
 
 const smurfsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_SMURFS_START:
-      return {
-        ...state,
-        fetchingSmurfs: true
-      };
     case FETCH_SMURFS_SUCCESS:
       return {
         ...state,
-        smurfs: action.payload,
-        fetchingSmurfs: false
-      };
-    case FETCH_SMURFS_FAILURE:
-      return {
-        ...state,
-        error: action.payload
+        smurfs: action.payload
       };
     case ADD_SMURF_SUCCESS:
       return {
         ...state,
         addingSmurf: false,
         error: "",
+        smurfs: action.payload
+      };
+    case DELETE_SMURF_SUCCESS:
+      return {
+        ...state,
         smurfs: action.payload
       };
     default:
