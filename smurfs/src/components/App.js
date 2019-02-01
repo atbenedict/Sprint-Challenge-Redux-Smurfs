@@ -12,7 +12,13 @@ import "./App.css";
  */
 class App extends Component {
   state = {
-    smurfs: []
+    smurfs: [
+      {
+        name: "Loading",
+        age: "the",
+        height: "Smurfs!"
+      }
+    ]
   };
 
   componentDidMount() {

@@ -42,10 +42,21 @@ const initialState = {
 
 const smurfsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_SMURFS_START:
+      return {
+        ...state,
+        fetchingSmurfs: true
+      };
     case FETCH_SMURFS_SUCCESS:
       return {
         ...state,
-        smurfs: action.payload
+        smurfs: action.payload,
+        fetchingSmurfs: false
+      };
+    case FETCH_SMURFS_FAILURE:
+      return {
+        ...state,
+        error: action.payload
       };
     case ADD_SMURF_SUCCESS:
       return {
