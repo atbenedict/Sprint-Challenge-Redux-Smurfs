@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getSmurfs, deleteSmurf } from "../actions";
+import SmurfsList from "../components/SmurfsList";
+import SmurfsForm from "../components/SmurfsForm";
+import "./App.css";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -7,16 +11,39 @@ import './App.css';
  `How do I ensure that my component links the state to props?`
  */
 class App extends Component {
+  state = {
+    smurfs: [
+      {
+        name: "Loading",
+        age: "the",
+        height: "Smurfs!"
+      }
+    ]
+  };
+
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
+
   render() {
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <SmurfsForm />
+        <SmurfsList smurfs={this.props.smurfs} deleteSmurf={deleteSmurf} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  smurfs: state.smurfs
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getSmurfs,
+    deleteSmurf
+  }
+)(App);
